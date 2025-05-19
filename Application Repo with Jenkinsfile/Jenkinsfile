@@ -1,0 +1,28 @@
+@Library('my-shared0-lib') _
+
+import org.example.Utils
+
+pipeline{
+    agent any
+
+    environment{
+        ENVIRONMENT = 'production'
+    }
+
+    stages{
+        stage('Greet'){
+            steps{
+                sayHello('Pawan')
+            }
+        }
+        stage('Show Env'){
+            steps{
+                script{
+                    def util= new Utils(this)
+                    util.printEnv()
+                }
+            }
+        }
+    }
+
+}
